@@ -1096,8 +1096,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7544423766390300227, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
+      propertyPath: torque
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544423766390300227, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: pickupspeed
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8964187539065895689, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: m_RootOrder
