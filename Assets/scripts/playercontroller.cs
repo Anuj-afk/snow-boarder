@@ -9,6 +9,7 @@ public class playercontroller : MonoBehaviour
     bool rightrotate;
     bool forward;
     bool backwards;
+    bool boost;
 
     bool istriggered = false;
 
@@ -19,7 +20,8 @@ public class playercontroller : MonoBehaviour
     Rigidbody2D rb;
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+        surfaceEffector = FindObjectOfType<SurfaceEffector2D>();    
     }
     private void FixedUpdate()
     {
@@ -67,17 +69,30 @@ public class playercontroller : MonoBehaviour
             }
             else { return; }
         }
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        surfaceEffector = collision.gameObject.GetComponent<SurfaceEffector2D>();
+        if (boost && !istriggered)
+        {
+            if (surfaceEffector.speed < 20)
+            {
+                float speed = surfaceEffector.speed;
+                float remainingspeed = 20 - speed;
+                if (remainingspeed <= 3)
+                {
+                    surfaceEffector.speed += remainingspeed;
+                }
+                else if (remainingspeed >= 3)
+                {
+                    surfaceEffector.speed += 3;
+                }
+            }
+        }
     }
     private void ProcessInput()
     {
         leftrotate = Input.GetKey(KeyCode.LeftArrow);
         rightrotate = Input.GetKey(KeyCode.RightArrow);
         forward = Input.GetKey(KeyCode.UpArrow);
-        backwards = Input.GetKey(KeyCode.DownArrow);    
+        backwards = Input.GetKey(KeyCode.DownArrow);
+        boost = Input.GetKey(KeyCode.Space);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
