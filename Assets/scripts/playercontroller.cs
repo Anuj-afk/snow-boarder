@@ -10,6 +10,8 @@ public class playercontroller : MonoBehaviour
     bool forward;
     bool backwards;
 
+    bool istriggered = false;
+
     [SerializeField] float pickupspeed;
     [SerializeField] float torque;
 
@@ -25,23 +27,23 @@ public class playercontroller : MonoBehaviour
         playerMovement();
     }
     private void Update()
-    {;
+    {
         ProcessInput();   
     }
     private void playerRotation()
     {
-        if (rightrotate)
+        if (rightrotate && !istriggered)
         {
             rb.AddTorque(-torque * Time.deltaTime);
         }
-        else if (leftrotate) 
+        else if (leftrotate && !istriggered) 
         { 
             rb.AddTorque(torque * Time.deltaTime);
         }
     }
     private void playerMovement()
     {
-        if (forward)
+        if (forward && !istriggered)
         {
             if(surfaceEffector.speed < 20) 
             {
@@ -49,7 +51,7 @@ public class playercontroller : MonoBehaviour
             }
             else {return;}
         }
-        else if (backwards)
+        else if (backwards && !istriggered)
         {
             if (surfaceEffector.speed > 0)
             {
@@ -76,5 +78,9 @@ public class playercontroller : MonoBehaviour
         rightrotate = Input.GetKey(KeyCode.RightArrow);
         forward = Input.GetKey(KeyCode.UpArrow);
         backwards = Input.GetKey(KeyCode.DownArrow);    
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        istriggered = true;
     }
 }

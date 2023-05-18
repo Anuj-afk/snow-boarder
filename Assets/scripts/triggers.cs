@@ -6,21 +6,22 @@ using UnityEngine.SceneManagement;
 public class triggers : MonoBehaviour
 {
     int currentScene;
+    [SerializeField] float delay;
     private void Update()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "floor")
+        if (collision.tag == "floor")
         {
-            SceneLoaderDeath();
+            Invoke("SceneLoaderDeath", delay);
         }
-        else if (collision.gameObject.tag == "Finish")
+        else if (collision.tag == "Finish")
         {
             Debug.Log("Level completed");
         }
-        else if (collision.gameObject.tag == "wall")
+        else if (collision.tag == "wall")
         {
             Debug.Log("went to high");
             SceneLoaderDeath();
