@@ -307,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499643273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.780724, y: 13.3, z: -10}
+  m_LocalPosition: {x: -50.780724, y: 13.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.780724, y: 13.3, z: -10}
+  m_LocalPosition: {x: -50.780724, y: 13.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1082,7 +1082,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 2
+  m_Speed: 0
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
@@ -1095,13 +1095,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7544423766390300227, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
-      propertyPath: torque
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7544423766390300227, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
-      propertyPath: pickupspeed
-      value: 1.5
+    - target: {fileID: 50451360, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8964187539065895689, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: m_RootOrder
@@ -1113,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964187539065895689, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.3
+      value: 13.12
       objectReference: {fileID: 0}
     - target: {fileID: 8964187539065895689, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: m_LocalPosition.z

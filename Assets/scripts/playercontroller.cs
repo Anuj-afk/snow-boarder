@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class playercontroller : MonoBehaviour
 {
+    bool leftrotate;
+    bool rightrotate;
+    bool forward;
+    bool backwards;
+
     [SerializeField] float pickupspeed;
     [SerializeField] float torque;
+
     SurfaceEffector2D surfaceEffector;
     Rigidbody2D rb;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        surfaceEffector = collision.gameObject.GetComponent<SurfaceEffector2D>();
     }
     private void FixedUpdate()
     {
@@ -23,23 +25,23 @@ public class playercontroller : MonoBehaviour
         playerMovement();
     }
     private void Update()
-    {
-
+    {;
+        ProcessInput();   
     }
     private void playerRotation()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (rightrotate)
         {
             rb.AddTorque(-torque * 10 * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow)) 
+        else if (leftrotate) 
         { 
             rb.AddTorque(torque * 10 * Time.deltaTime);
         }
     }
     private void playerMovement()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (forward)
         {
             if(surfaceEffector.speed < 20) 
             {
@@ -47,7 +49,7 @@ public class playercontroller : MonoBehaviour
             }
             else {return;}
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (backwards)
         {
             if (surfaceEffector.speed > 0)
             {
@@ -63,5 +65,16 @@ public class playercontroller : MonoBehaviour
             }
             else { return; }
         }
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        surfaceEffector = collision.gameObject.GetComponent<SurfaceEffector2D>();
+    }
+    private void ProcessInput()
+    {
+        leftrotate = Input.GetKey(KeyCode.LeftArrow);
+        rightrotate = Input.GetKey(KeyCode.RightArrow);
+        forward = Input.GetKey(KeyCode.UpArrow);
+        backwards = Input.GetKey(KeyCode.DownArrow);    
     }
 }
