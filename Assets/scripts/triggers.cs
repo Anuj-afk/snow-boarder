@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class triggers : MonoBehaviour
 {
     int currentScene;
+
+    bool isDead = false;
+
+    [SerializeField] ParticleSystem Deathparicles;
+    [SerializeField] ParticleSystem EndparticleSystem;
     [SerializeField] float delay;
     private void Update()
     {
@@ -15,16 +20,22 @@ public class triggers : MonoBehaviour
     {
         if (collision.tag == "floor")
         {
+            isDead = true;
             Invoke("SceneLoaderDeath", delay);
+            particlePlayer();
         }
         else if (collision.tag == "Finish")
         {
+            isDead = false;
             Debug.Log("Level completed");
+            particlePlayer();
         }
         else if (collision.tag == "wall")
         {
+            isDead = true;
             Debug.Log("went to high");
             SceneLoaderDeath();
+            particlePlayer();
         }
     }
     private void SceneLoaderNextLevel()
@@ -34,5 +45,16 @@ public class triggers : MonoBehaviour
     private void SceneLoaderDeath()
     {
         SceneManager.LoadScene(currentScene);
+    }
+    private void particlePlayer()
+    {
+        if (isDead)
+        {
+            Deathparicles.Play();
+        }
+        else if (!isDead)
+        {
+            EndparticleSystem.Play();
+        }
     }
 }
