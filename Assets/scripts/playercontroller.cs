@@ -32,11 +32,11 @@ public class playercontroller : MonoBehaviour
     {
         if (rightrotate)
         {
-            rb.AddTorque(-torque * 10 * Time.deltaTime);
+            rb.AddTorque(-torque * Time.deltaTime);
         }
         else if (leftrotate) 
         { 
-            rb.AddTorque(torque * 10 * Time.deltaTime);
+            rb.AddTorque(torque * Time.deltaTime);
         }
     }
     private void playerMovement()
