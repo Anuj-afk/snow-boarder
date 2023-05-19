@@ -14,11 +14,16 @@ public class triggers : MonoBehaviour
     [SerializeField] ParticleSystem snowParticleSystem;
     [SerializeField] float delay;
 
+    AudioSource audioSource;
+    [SerializeField] AudioClip Deathclip;
+    [SerializeField] AudioClip finishClip;
+
     SurfaceEffector2D surfaceEffector;
 
     private void Start()
     {
-        surfaceEffector = FindObjectOfType<SurfaceEffector2D>();    
+        surfaceEffector = FindObjectOfType<SurfaceEffector2D>(); 
+        audioSource = GetComponent<AudioSource>();  
     }
     private void Update()
     {
@@ -31,12 +36,14 @@ public class triggers : MonoBehaviour
             isDead = true;
             Invoke("SceneLoaderDeath", delay);
             particlePlayer();
+            audioSource.PlayOneShot(Deathclip);
         }
         else if (collision.tag == "Finish")
         {
             isDead = false;
             Debug.Log("Level completed");
             particlePlayer();
+            audioSource.PlayOneShot(finishClip);
         }
         else if (collision.tag == "wall")
         {

@@ -2098,7 +2098,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2667,6 +2667,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4980251792592495686, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
+      propertyPath: Boarding
+      value: 
+      objectReference: {fileID: 8300000, guid: 58f7d2dc165761d49848075f6ab62c86, type: 3}
     - target: {fileID: 8964187539065895689, guid: 6514cb3e9105881488ebdafc052720e9, type: 3}
       propertyPath: m_RootOrder
       value: 2
