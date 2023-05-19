@@ -11,7 +11,15 @@ public class triggers : MonoBehaviour
 
     [SerializeField] ParticleSystem Deathparicles;
     [SerializeField] ParticleSystem EndparticleSystem;
+    [SerializeField] ParticleSystem snowParticleSystem;
     [SerializeField] float delay;
+
+    SurfaceEffector2D surfaceEffector;
+
+    private void Start()
+    {
+        surfaceEffector = FindObjectOfType<SurfaceEffector2D>();    
+    }
     private void Update()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -55,6 +63,32 @@ public class triggers : MonoBehaviour
         else if (!isDead)
         {
             EndparticleSystem.Play();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {       
+        if (surfaceEffector.speed > 1)
+        {
+            snowParticleSystem.Play();
+        }
+        else
+        {
+            snowParticleSystem.Stop();
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        snowParticleSystem.Stop();
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (surfaceEffector.speed < 1)
+        {
+            snowParticleSystem.Stop();
+        }
+        else if (surfaceEffector.speed > 1)
+        {
+            snowParticleSystem.Play();
         }
     }
 }
