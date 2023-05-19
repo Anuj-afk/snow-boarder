@@ -19,31 +19,44 @@ public class triggers : MonoBehaviour
     [SerializeField] AudioClip finishClip;
 
     SurfaceEffector2D surfaceEffector;
-
+    playercontroller playercontroller;
     private void Start()
     {
         surfaceEffector = FindObjectOfType<SurfaceEffector2D>(); 
-        audioSource = GetComponent<AudioSource>();  
+        audioSource = GetComponent<AudioSource>();
+        playercontroller = FindObjectOfType<playercontroller>();
     }
     private void Update()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
+        playercontroller.move();
+        bool triggered = playercontroller.istriggered;
         if (collision.tag == "floor")
         {
             isDead = true;
             Invoke("SceneLoaderDeath", delay);
             particlePlayer();
-            audioSource.PlayOneShot(Deathclip);
+            triggered = false;
+            if (triggered == false)
+            {
+                audioSource.PlayOneShot(Deathclip);
+                triggered = true;
+            }
         }
         else if (collision.tag == "Finish")
         {
             isDead = false;
             Debug.Log("Level completed");
             particlePlayer();
-            audioSource.PlayOneShot(finishClip);
+            triggered = false;
+            if (triggered == false)
+            {
+                audioSource.PlayOneShot(finishClip);
+                triggered = true;
+            }
         }
         else if (collision.tag == "wall")
         {

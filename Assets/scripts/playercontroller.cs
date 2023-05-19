@@ -11,7 +11,7 @@ public class playercontroller : MonoBehaviour
     bool backwards;
     bool boost;
 
-    bool istriggered = false;
+    public bool istriggered = false;
 
     [SerializeField] float pickupspeed;
     [SerializeField] float torque;
@@ -94,7 +94,7 @@ public class playercontroller : MonoBehaviour
         backwards = Input.GetKey(KeyCode.DownArrow);
         boost = Input.GetKey(KeyCode.Space);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void move()
     {
         istriggered = true;
     }
